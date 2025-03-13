@@ -1,0 +1,184 @@
+{
+  "contacts": [
+    {
+      "fullname": "Ana Martínez Ruiz",
+      "phonenumber": "555-0101",
+      "email": "ana.martinez@email.com",
+      "type": "familia"
+    },
+    {
+      "fullname": "Carlos López Silva",
+      "phonenumber": "555-0102",
+      "email": "carlos.lopez@company.com",
+      "type": "trabajo"
+    },
+    {
+      "fullname": "María González Torres",
+      "phonenumber": "555-0103",
+      "email": "maria.gt@email.com",
+      "type": "social"
+    },
+    {
+      "fullname": "Juan Rodríguez Pérez",
+      "phonenumber": "555-0104",
+      "email": "juan.rodriguez@email.com",
+      "type": "familia"
+    },
+    {
+      "fullname": "Laura Sánchez Vega",
+      "phonenumber": "555-0105",
+      "email": "laura.sanchez@company.com",
+      "type": "trabajo"
+    },
+    {
+      "fullname": "Pedro Ramírez Luna",
+      "phonenumber": "555-0106",
+      "email": "pedro.ramirez@email.com",
+      "type": "social"
+    },
+    {
+      "fullname": "Sofia Torres García",
+      "phonenumber": "555-0107",
+      "email": "sofia.torres@email.com",
+      "type": "familia"
+    },
+    {
+      "fullname": "Miguel Ángel Castro",
+      "phonenumber": "555-0108",
+      "email": "miguel.castro@company.com",
+      "type": "trabajo"
+    },
+    {
+      "fullname": "Isabel Flores Mora",
+      "phonenumber": "555-0109",
+      "email": "isabel.flores@email.com",
+      "type": "social"
+    },
+    {
+      "fullname": "Roberto Díaz Vega",
+      "phonenumber": "555-0110",
+      "email": "roberto.diaz@email.com",
+      "type": "familia"
+    },
+    {
+      "fullname": "Carmen Ortiz Luna",
+      "phonenumber": "555-0111",
+      "email": "carmen.ortiz@company.com",
+      "type": "trabajo"
+    },
+    {
+      "fullname": "Francisco Morales",
+      "phonenumber": "555-0112",
+      "email": "francisco.m@email.com",
+      "type": "social"
+    },
+    {
+      "fullname": "Elena Vargas Ruiz",
+      "phonenumber": "555-0113",
+      "email": "elena.vargas@email.com",
+      "type": "familia"
+    },
+    {
+      "fullname": "Andrés Mendoza",
+      "phonenumber": "555-0114",
+      "email": "andres.m@company.com",
+      "type": "trabajo"
+    },
+    {
+      "fullname": "Patricia Herrera",
+      "phonenumber": "555-0115",
+      "email": "patricia.h@email.com",
+      "type": "social"
+    },
+    {
+      "fullname": "José Luis Jiménez",
+      "phonenumber": "555-0116",
+      "email": "joseluis.j@email.com",
+      "type": "familia"
+    },
+    {
+      "fullname": "Diana Castro Silva",
+      "phonenumber": "555-0117",
+      "email": "diana.castro@company.com",
+      "type": "trabajo"
+    },
+    {
+      "fullname": "Ricardo Medina",
+      "phonenumber": "555-0118",
+      "email": "ricardo.m@email.com",
+      "type": "social"
+    },
+    {
+      "fullname": "Mónica Ríos Torres",
+      "phonenumber": "555-0119",
+      "email": "monica.rios@email.com",
+      "type": "familia"
+    },
+    {
+      "fullname": "Alberto Guzmán",
+      "phonenumber": "555-0120",
+      "email": "alberto.g@company.com",
+      "type": "trabajo"
+    },
+    {
+      "fullname": "Gabriela Navarro",
+      "phonenumber": "555-0121",
+      "email": "gabriela.n@email.com",
+      "type": "social"
+    },
+    {
+      "fullname": "Luis Enrique Soto",
+      "phonenumber": "555-0122",
+      "email": "luise.soto@email.com",
+      "type": "familia"
+    },
+    {
+      "fullname": "Marina Paz Valle",
+      "phonenumber": "555-0123",
+      "email": "marina.paz@company.com",
+      "type": "trabajo"
+    },
+    {
+      "fullname": "Daniel Rojas",
+      "phonenumber": "555-0124",
+      "email": "daniel.r@email.com",
+      "type": "social"
+    },
+    {
+      "fullname": "Beatriz Luna Mora",
+      "phonenumber": "555-0125",
+      "email": "beatriz.luna@email.com",
+      "type": "familia"
+    },
+    {
+      "fullname": "Jorge Delgado",
+      "phonenumber": "555-0126",
+      "email": "jorge.d@company.com",
+      "type": "trabajo"
+    },
+    {
+      "fullname": "Victoria Paredes",
+      "phonenumber": "555-0127",
+      "email": "victoria.p@email.com",
+      "type": "social"
+    },
+    {
+      "fullname": "Raúl Mendoza Cruz",
+      "phonenumber": "555-0128",
+      "email": "raul.mendoza@email.com",
+      "type": "familia"
+    },
+    {
+      "fullname": "Sandra Cortés",
+      "phonenumber": "555-0129",
+      "email": "sandra.c@company.com",
+      "type": "trabajo"
+    },
+    {
+      "fullname": "Eduardo Rivas",
+      "phonenumber": "555-0130",
+      "email": "eduardo.r@email.com",
+      "type": "social"
+    }
+  ]
+}
