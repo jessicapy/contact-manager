@@ -7,9 +7,9 @@ const ContactList = ({ contacts, onSelectContact }) => {
     <div className="contact-list">
       {contacts.map((contact, index) => (
         <ContactItem 
-          key={index} 
-          contact={contact} 
-          onSelect={onSelectContact}
+          key={index}
+          contact={contact}
+          onSelectContact={onSelectContact}
         />
       ))}
     </div>

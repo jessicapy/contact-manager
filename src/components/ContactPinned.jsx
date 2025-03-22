@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ContactPinned = ({ selectedContact, onClear }) => {
-  if (!selectedContact) {
+const ContactPinned = ({ contact, onClearContact }) => {
+  if (!contact) {
     return (
       <div className="contact-pinned">
         <p>No contact selected</p>
@@ -16,30 +16,37 @@ const ContactPinned = ({ selectedContact, onClear }) => {
         <h2>Featured Contact</h2>
         <button 
           className="clear-button"
-          onClick={onClear}
+          onClick={onClearContact}
           aria-label="Clear featured contact"
         >
-          ✖️ Clear
+          ❌ Clear Contact
         </button>
       </div>
       <div className="contact-pinned-card">
-        <h3>{selectedContact.fullname}</h3>
-        <p>📞 {selectedContact.phonenumber}</p>
-        <p>✉️ {selectedContact.email}</p>
-        <p>📑 {selectedContact.type}</p>
+        <div className="contact-avatar">
+          {contact.fullname[0].toUpperCase()}
+        </div>
+        <div className="contact-details">
+          <h3>{contact.fullname}</h3>
+          <div className="contact-info">
+            <p><span className="icon">📞</span> {contact.phonenumber}</p>
+            <p><span className="icon">✉️</span> {contact.email}</p>
+            <p><span className="icon">📑</span> {contact.type}</p>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
 ContactPinned.propTypes = {
-  selectedContact: PropTypes.shape({
-    fullname: PropTypes.string.isRequired,
-    phonenumber: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
+  contact: PropTypes.shape({
+    fullname: PropTypes.string,
+    phonenumber: PropTypes.string,
+    email: PropTypes.string,
+    type: PropTypes.string,
   }),
-  onClear: PropTypes.func.isRequired,
+  onClearContact: PropTypes.func.isRequired,
 };
 
 export default ContactPinned;

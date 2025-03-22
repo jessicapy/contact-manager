@@ -1,9 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ContactItem = ({ contact, onSelect }) => {
+const ContactItem = ({ contact, onSelectContact }) => {
   return (
-    <div className="contact-item" onClick={() => onSelect(contact)}>
+    <div 
+      className="contact-item"
+      onClick={() => onSelectContact(contact)}
+      role="button"
+      tabIndex={0}
+    >
       <h3>{contact.fullname}</h3>
       <p>📞 {contact.phonenumber}</p>
       <p>✉️ {contact.email}</p>
@@ -19,7 +24,7 @@ ContactItem.propTypes = {
     email: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
   }).isRequired,
-  onSelect: PropTypes.func.isRequired,
+  onSelectContact: PropTypes.func.isRequired,
 };
 
 export default ContactItem;

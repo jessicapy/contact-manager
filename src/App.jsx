@@ -1,31 +1,34 @@
 import React, { useState } from 'react';
-import ContactList from './components/ContactList';
+import Header from './components/Header';
 import ContactPinned from './components/ContactPinned';
-import contacts from './data/contacts.json';
-import './components/ContactList.css';
+import ContactList from './components/ContactList';
+import contacts from './data/contacts';
+import './App.css';
 
 function App() {
-  const [selectedContact, setSelectedContact] = useState(null);
+  const [pinnedContact, setPinnedContact] = useState(null);
 
   const handleSelectContact = (contact) => {
-    setSelectedContact(contact);
+    setPinnedContact(contact);
   };
 
   const handleClearContact = () => {
-    setSelectedContact(null);
+    setPinnedContact(null);
   };
 
   return (
-    <div className="app">
-      <h1>Contact Manager</h1>
-      <ContactPinned 
-        selectedContact={selectedContact} 
-        onClear={handleClearContact}
-      />
-      <ContactList 
-        contacts={contacts.contacts} 
-        onSelectContact={handleSelectContact}
-      />
+    <div className="App">
+      <Header />
+      <main className="app-main">
+        <ContactPinned 
+          contact={pinnedContact} 
+          onClearContact={handleClearContact}
+        />
+        <ContactList 
+          contacts={contacts} 
+          onSelectContact={handleSelectContact}
+        />
+      </main>
     </div>
   );
 }
