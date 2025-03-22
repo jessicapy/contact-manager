@@ -1,23 +1,31 @@
 import React from 'react';
-import './ContactList.css';
+import PropTypes from 'prop-types';
+import ContactItem from './ContactItem';
 
-function ContactList({ contacts }) {
+const ContactList = ({ contacts, onSelectContact }) => {
   return (
     <div className="contact-list">
-      <h2>Mis Contactos</h2>
-      <ul>
-        {contacts.map(contact => (
-          <li key={contact.id} className="contact-item">
-            <div className="contact-info">
-              <h3>{contact.name}</h3>
-              <p>📱 {contact.phone}</p>
-              <p>✉️ {contact.email}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
+      {contacts.map((contact, index) => (
+        <ContactItem 
+          key={index}
+          contact={contact}
+          onSelectContact={onSelectContact}
+        />
+      ))}
     </div>
   );
-}
+};
+
+ContactList.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      fullname: PropTypes.string.isRequired,
+      phonenumber: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  onSelectContact: PropTypes.func.isRequired,
+};
 
 export default ContactList;

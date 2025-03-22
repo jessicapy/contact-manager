@@ -1,20 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './components/Header';
-import ContactDetail from './components/ContactDetail';
+import ContactPinned from './components/ContactPinned';
 import ContactList from './components/ContactList';
 import contacts from './data/contacts';
 import './App.css';
 
 function App() {
-  // Using the first contact as the featured contact
-  const featuredContact = contacts[0];
+  const [pinnedContact, setPinnedContact] = useState(null);
+
+  const handleSelectContact = (contact) => {
+    setPinnedContact(contact);
+  };
+
+  const handleClearContact = () => {
+    setPinnedContact(null);
+  };
 
   return (
     <div className="App">
       <Header />
       <main className="app-main">
-        <ContactDetail contact={featuredContact} />
-        <ContactList contacts={contacts} />
+        <ContactPinned 
+          contact={pinnedContact} 
+          onClearContact={handleClearContact}
+        />
+        <ContactList 
+          contacts={contacts} 
+          onSelectContact={handleSelectContact}
+        />
       </main>
     </div>
   );
