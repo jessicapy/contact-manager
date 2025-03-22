@@ -1,4 +1,4 @@
-import React from 'react';
+import 'react';
 import PropTypes from 'prop-types';
 
 const ContactItem = ({ contact, onSelectContact }) => {
@@ -10,9 +10,6 @@ const ContactItem = ({ contact, onSelectContact }) => {
       tabIndex={0}
     >
       <h3>{contact.fullname}</h3>
-      <p>📞 {contact.phonenumber}</p>
-      <p>✉️ {contact.email}</p>
-      <p>📑 {contact.type}</p>
     </div>
   );
 };
