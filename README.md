@@ -9,4 +9,4 @@ Currently, two official plugins are available:
 
 # Netlify link:
 
-- [@contact-manager](https://67d256de0184e7c303935ee0--contact-manager-2.netlify.app)
+- [@contact-manager](https://contact-manager-2.netlify.app/)
