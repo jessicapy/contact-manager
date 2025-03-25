@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const ContactForm = ({ onAddContact }) => {
+const ContactForm = ({ onAddContact, isLoading }) => {
   const [formData, setFormData] = useState({
     fullname: '',
     phonenumber: '',
@@ -55,21 +55,18 @@ const ContactForm = ({ onAddContact }) => {
     );
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (isFormValid()) {
-      onAddContact(formData);
-      setFormData({
-        fullname: '',
-        phonenumber: '',
-        email: '',
-        type: 'social'
-      });
-      setErrors({
-        fullname: '',
-        phonenumber: '',
-        email: ''
-      });
+      await onAddContact(formData);
+      if (!isLoading) {
+        setFormData({
+          fullname: '',
+          phonenumber: '',
+          email: '',
+          type: 'social'
+        });
+      }
     }
   };
 
@@ -85,7 +82,7 @@ const ContactForm = ({ onAddContact }) => {
           name="fullname"
           value={formData.fullname}
           onChange={handleChange}
-          className={errors.fullname ? 'error' : ''}
+          disabled={isLoading}
           required
         />
         {errors.fullname && <span className="error-message">{errors.fullname}</span>}
@@ -100,7 +97,7 @@ const ContactForm = ({ onAddContact }) => {
           value={formData.phonenumber}
           onChange={handleChange}
           placeholder="(123) 123-1234"
-          className={errors.phonenumber ? 'error' : ''}
+          disabled={isLoading}
           required
         />
         {errors.phonenumber && <span className="error-message">{errors.phonenumber}</span>}
@@ -114,7 +111,7 @@ const ContactForm = ({ onAddContact }) => {
           name="email"
           value={formData.email}
           onChange={handleChange}
-          className={errors.email ? 'error' : ''}
+          disabled={isLoading}
           required
         />
         {errors.email && <span className="error-message">{errors.email}</span>}
@@ -127,6 +124,7 @@ const ContactForm = ({ onAddContact }) => {
           name="type"
           value={formData.type}
           onChange={handleChange}
+          disabled={isLoading}
         >
           <option value="familia">Family</option>
           <option value="trabajo">Work</option>
@@ -137,16 +135,21 @@ const ContactForm = ({ onAddContact }) => {
       <button 
         type="submit" 
         className="submit-button"
-        disabled={!isFormValid()}
+        disabled={!isFormValid() || isLoading}
       >
-        Save Contact
+        {isLoading ? 'Guardando...' : 'Guardar Contacto'}
       </button>
     </form>
   );
 };
 
 ContactForm.propTypes = {
-  onAddContact: PropTypes.func.isRequired
+  onAddContact: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool
+};
+
+ContactForm.defaultProps = {
+  isLoading: false
 };
 
 export default ContactForm;
