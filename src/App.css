@@ -200,6 +200,11 @@
   transform: translateY(-1px);
 }
 
+.fetch-button .loading-spinner {
+  font-size: 1rem;
+  margin: 0;
+}
+
 .error-message {
   color: #dc3545;
   padding: 0.5rem;
@@ -210,11 +215,22 @@
 .contact-list {
   opacity: 1;
   transition: opacity 0.3s ease;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
 }
 
 .contact-list.loading {
-  opacity: 0.5;
-  pointer-events: none;
+  opacity: 0.6;
+}
+
+.contact-list.loading,
+.contact-list.empty {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-style: italic;
 }
 
 .error-container {
@@ -226,6 +242,11 @@
   padding: 1rem;
   margin: 1rem 0;
   text-align: center;
+}
+
+.error-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
 }
 
 .error-message {
@@ -258,6 +279,11 @@
   transform: translateY(0);
 }
 
+.retry-button:disabled {
+  background-color: #e9a5ac;
+  cursor: not-allowed;
+}
+
 .submit-button {
   opacity: 1;
   transition: all 0.2s ease;
@@ -273,6 +299,36 @@
 .form-group select:disabled {
   background-color: #f8f8f8;
   cursor: not-allowed;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  color: #666;
+}
+
+.loading-spinner {
+  animation: spin 1s linear infinite;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.loading-text {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 
