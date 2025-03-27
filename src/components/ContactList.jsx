@@ -1,8 +1,16 @@
 import 'react';
 import PropTypes from 'prop-types';
 import ContactItem from './ContactItem';
+import { useNavigate } from 'react-router-dom';
+import './ContactList.css';
 
-const ContactList = ({ contacts, isLoading, onSelectContact }) => {
+const ContactList = ({ contacts, isLoading }) => {
+  const navigate = useNavigate();
+
+  const handleContactClick = (contact) => {
+    navigate(`/contact/${contact.id}`);
+  };
+
   if (isLoading) {
     return <div className="contact-list loading">Loading contacts...</div>;
   }
@@ -17,12 +25,17 @@ const ContactList = ({ contacts, isLoading, onSelectContact }) => {
 
   return (
     <div className="contact-list">
-      {contacts.map((contact, index) => (
-        <ContactItem 
-          key={index}
-          contact={contact}
-          onSelectContact={onSelectContact}
-        />
+      {contacts.map(contact => (
+        <div 
+          key={contact.id}
+          className="contact-card"
+          onClick={() => handleContactClick(contact)}
+        >
+          <div className="contact-info-preview">
+            <span className="contact-name">{contact.fullname}</span>
+            <span className="contact-type">{contact.type}</span>
+          </div>
+        </div>
       ))}
     </div>
   );
@@ -31,6 +44,7 @@ const ContactList = ({ contacts, isLoading, onSelectContact }) => {
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
+      id: PropTypes.string.isRequired,
       fullname: PropTypes.string.isRequired,
       phonenumber: PropTypes.string.isRequired,
       email: PropTypes.string.isRequired,
@@ -38,7 +52,6 @@ ContactList.propTypes = {
     })
   ).isRequired,
   isLoading: PropTypes.bool.isRequired,
-  onSelectContact: PropTypes.func.isRequired,
 };
 
 export default ContactList;

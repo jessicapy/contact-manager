@@ -1,8 +1,15 @@
 import { useState, useEffect } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
+import Navbar from './components/Navbar';
 import ContactForm from './components/ContactForm';
 import ContactPinned from './components/ContactPinned';
 import ContactList from './components/ContactList';
+import ContactListPage from './pages/ContactListPage';
+import NewContactPage from './pages/NewContactPage';
+import ContactDetailPage from './pages/ContactDetailPage';
+import ContactFilter from './components/ContactFilter';
+import FilteredContactsPage from './pages/FilteredContactsPage';
 import './App.css';
 
 function App() {
@@ -103,49 +110,40 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <Navbar />
       <main className="app-main">
-        <div className="controls">
-          <button 
-            onClick={fetchContacts}
-            disabled={isLoading}
-            className="fetch-button"
-          >
-            {isLoading ? (
-              <span className="loading-text">
-                <span className="loading-spinner">⭕</span>
-                Cargando...
-              </span>
-            ) : (
-              '📥 Cargar Contactos'
-            )}
-          </button>
-          {renderError()} {/* Replace the inline error with renderError() */}
-        </div>
-        
-        {isLoading ? (
-          <div className="loading-container">
-            <div className="loading-spinner">⭕</div>
-            <p>Cargando contactos...</p>
-          </div>
-        ) : (
-          <>
-            <ContactPinned 
-              contact={pinnedContact}
-              onClearContact={handleClearContact}
+        <Routes>
+          <Route path="/" element={<Navigate to="/contacts/all" replace />} />
+          
+          <Route path="/contacts" element={<ContactFilter />}>
+            <Route 
+              path=":type" 
+              element={
+                <FilteredContactsPage 
+                  contacts={contacts}
+                  onSelectContact={handleSelectContact}
+                />
+              } 
             />
-            <ContactList 
-              contacts={contacts}
-              onSelectContact={handleSelectContact}
-            />
-            <ContactForm 
-              onAddContact={handleAddContact}
-              isLoading={isLoading}
-            />
-          </>
-        )}
+          </Route>
+
+          <Route 
+            path="/new" 
+            element={
+              <NewContactPage 
+                onAddContact={handleAddContact}
+                isLoading={isLoading}
+              />
+            } 
+          />
+          
+          <Route 
+            path="/contact/:id" 
+            element={<ContactDetailPage contacts={contacts} />} 
+          />
+        </Routes>
       </main>
     </div>
-    
   );
 }
 
