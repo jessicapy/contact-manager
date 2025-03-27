@@ -119,7 +119,7 @@ function App() {
               '📥 Cargar Contactos'
             )}
           </button>
-          {error && <p className="error-message">{error}</p>}
+          {renderError()} {/* Replace the inline error with renderError() */}
         </div>
         
         {isLoading ? (
@@ -129,6 +129,10 @@ function App() {
           </div>
         ) : (
           <>
+            <ContactPinned 
+              contact={pinnedContact}
+              onClearContact={handleClearContact}
+            />
             <ContactList 
               contacts={contacts}
               onSelectContact={handleSelectContact}
@@ -141,6 +145,7 @@ function App() {
         )}
       </main>
     </div>
+    
   );
 }
 
