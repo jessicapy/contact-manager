@@ -2,21 +2,16 @@ import { useState, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Navbar from './components/Navbar';
-import ContactForm from './components/ContactForm';
-import ContactPinned from './components/ContactPinned';
-import ContactList from './components/ContactList';
-import ContactListPage from './pages/ContactListPage';
-import NewContactPage from './pages/NewContactPage';
-import ContactDetailPage from './pages/ContactDetailPage';
 import ContactFilter from './components/ContactFilter';
 import FilteredContactsPage from './pages/FilteredContactsPage';
+import NewContactPage from './pages/NewContactPage';
+import ContactDetailPage from './pages/ContactDetailPage';
 import './App.css';
 
 function App() {
   const [contacts, setContacts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [pinnedContact, setPinnedContact] = useState(null);
 
   const fetchContacts = async () => {
     setIsLoading(true);
@@ -81,36 +76,16 @@ function App() {
     console.log('Contact saved successfully:', newContact);
   };
 
-  const handleSelectContact = (contact) => {
-    setPinnedContact(contact);
-  };
-
-  const handleClearContact = () => {
-    setPinnedContact(null);
-  };
-
-  const renderError = () => {
-    if (!error) return null;
-  
-    return (
-      <div className="error-container">
-        <div className="error-icon">⚠️</div>
-        <p className="error-message">{error}</p>
-        <button 
-          className="retry-button"
-          onClick={fetchContacts}
-          disabled={isLoading}
-        >
-          🔄 Reintentar
-        </button>
-      </div>
-    );
-  };
-  
   return (
     <div className="App">
       <Header />
       <Navbar />
+      {error && (
+        <div className="error-banner">
+          <p>{error}</p>
+          <button onClick={() => setError(null)}>✕</button>
+        </div>
+      )}
       <main className="app-main">
         <Routes>
           <Route path="/" element={<Navigate to="/contacts/all" replace />} />
@@ -121,7 +96,6 @@ function App() {
               element={
                 <FilteredContactsPage 
                   contacts={contacts}
-                  onSelectContact={handleSelectContact}
                 />
               } 
             />
