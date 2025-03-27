@@ -1,4 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const ContactDetailPage = ({ contacts }) => {
   const { id } = useParams();
@@ -41,6 +42,18 @@ const ContactDetailPage = ({ contacts }) => {
       </div>
     </div>
   );
+};
+
+ContactDetailPage.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      fullname: PropTypes.string.isRequired,
+      phonenumber: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+    })
+  ).isRequired
 };
 
 export default ContactDetailPage;

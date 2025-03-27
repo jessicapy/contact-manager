@@ -1,6 +1,5 @@
 import 'react';
 import PropTypes from 'prop-types';
-import ContactItem from './ContactItem';
 import { useNavigate } from 'react-router-dom';
 import './ContactList.css';
 

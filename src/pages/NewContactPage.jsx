@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import ContactForm from '../components/ContactForm';
 
 const NewContactPage = ({ onAddContact, isLoading }) => {
@@ -10,6 +11,11 @@ const NewContactPage = ({ onAddContact, isLoading }) => {
       />
     </div>
   );
+};
+
+NewContactPage.propTypes = {
+  onAddContact: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired
 };
 
 export default NewContactPage;
