@@ -1,12 +1,18 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const ContactDetailPage = ({ contacts }) => {
+const ContactDetailPage = ({ contacts, onDeleteContact, isLoading }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   
-  // Convert id to string for comparison since useParams returns strings
   const contact = contacts.find(c => String(c.id) === id);
+
+  const handleDelete = async () => {
+    const success = await onDeleteContact(id);
+    if (success) {
+      navigate('/contacts/all');
+    }
+  };
 
   if (!contact) {
     return (
@@ -39,6 +45,14 @@ const ContactDetailPage = ({ contacts }) => {
           <span className="label">Tipo:</span>
           <span className="value">{contact.type}</span>
         </div>
+        
+        <button 
+          onClick={handleDelete}
+          className="delete-button"
+          disabled={isLoading}
+        >
+          {isLoading ? '⭕ Eliminando...' : '🗑️ Eliminar Contacto'}
+        </button>
       </div>
     </div>
   );
@@ -53,7 +67,9 @@ ContactDetailPage.propTypes = {
       email: PropTypes.string.isRequired,
       type: PropTypes.string.isRequired,
     })
-  ).isRequired
+  ).isRequired,
+  onDeleteContact: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired
 };
 
 export default ContactDetailPage;

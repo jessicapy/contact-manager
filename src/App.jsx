@@ -87,7 +87,7 @@ function App() {
     console.log('Contact saved successfully:', newContact);
   };
 
-    const handleSyncContacts = async () => {
+  const handleSyncContacts = async () => {
     if (isLoading) return; // Prevent multiple clicks
     
     setIsLoading(true);
@@ -118,6 +118,39 @@ function App() {
       console.error('Sync error:', err);
     } finally {
       setIsLoading(false); // Ensure loading state is reset
+    }
+  };
+
+  const handleDeleteContact = async (contactId) => {
+    if (!window.confirm('¿Estás seguro de eliminar este contacto?')) {
+      return;
+    }
+
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/${contactId}`, {
+        method: 'DELETE'
+      });
+
+      if (!response.ok) {
+        throw new Error('Error al eliminar el contacto');
+      }
+
+      setContacts(prevContacts => {
+        const updatedContacts = prevContacts.filter(c => c.id !== contactId);
+        saveToLocalStorage(updatedContacts);
+        return updatedContacts;
+      });
+
+      return true;
+    } catch (err) {
+      setError('Error al eliminar el contacto');
+      console.error('Delete error:', err);
+      return false;
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -167,7 +200,13 @@ function App() {
           
           <Route 
             path="/contact/:id" 
-            element={<ContactDetailPage contacts={contacts} />} 
+            element={
+              <ContactDetailPage 
+                contacts={contacts}
+                onDeleteContact={handleDeleteContact}
+                isLoading={isLoading}
+              />
+            } 
           />
         </Routes>
       </main>
