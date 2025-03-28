@@ -87,39 +87,20 @@ function App() {
     console.log('Contact saved successfully:', newContact);
   };
 
-  const handleSaveContacts = () => {
-    const success = saveToLocalStorage(contacts);
-    if (success) {
-      alert('Contactos guardados exitosamente');
-    } else {
-      setError('Error al guardar los contactos');
-    }
-  };
-
-  const handleLoadContacts = () => {
-    try {
-      const loadedContacts = loadFromLocalStorage();
-      if (loadedContacts.length > 0) {
-        setContacts(loadedContacts);
-      } else {
-        setError('No hay contactos guardados');
-      }
-    } catch (e) {
-      setError('Error al cargar los contactos');
-      console.error('Error loading contacts:', e);
-    }
-  };
-
-  const handleSyncContacts = async () => {
+    const handleSyncContacts = async () => {
+    if (isLoading) return; // Prevent multiple clicks
+    
     setIsLoading(true);
     setError(null);
 
     try {
       // Fetch from API
       const response = await fetch(import.meta.env.VITE_API_URL);
+      
       if (!response.ok) {
-        throw new Error('Error al cargar los contactos del servidor');
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
+      
       const apiContacts = await response.json();
       
       // Update state
@@ -131,13 +112,12 @@ function App() {
         throw new Error('Error al guardar en almacenamiento local');
       }
 
-      // Show success message
       alert('¡Sincronización exitosa!');
     } catch (err) {
       setError(`Error de sincronización: ${err.message}`);
       console.error('Sync error:', err);
     } finally {
-      setIsLoading(false);
+      setIsLoading(false); // Ensure loading state is reset
     }
   };
 
@@ -159,20 +139,6 @@ function App() {
             disabled={isLoading}
           >
             {isLoading ? '⭕ Sincronizando...' : '🔄 Sincronizar Datos'}
-          </button>
-          <button 
-            onClick={handleLoadContacts}
-            className="load-button"
-            disabled={isLoading}
-          >
-            📂 Cargar Guardados
-          </button>
-          <button 
-            onClick={handleSaveContacts}
-            className="save-button"
-            disabled={contacts.length === 0}
-          >
-            💾 Guardar Contactos
           </button>
         </div>
         <Routes>
